@@ -10,13 +10,19 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("gusInfoGraphic.xml"));
-        primaryStage.setTitle("Hello World");
-        primaryStage.setScene(new Scene(root, 300, 275));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("gusInfoGraphic.fxml"));
+        Parent root = fxmlLoader.load();
+        Controller controller = fxmlLoader.getController();
+        controller.setHostServices(this.getHostServices());
+        controller.setStage(primaryStage);
+
+        primaryStage.setTitle("Przegląd infografik");
+        primaryStage.setScene(new Scene(root, 600, 400));
         primaryStage.show();
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args)
+    {
         launch(args);
     }
 }
